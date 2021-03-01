@@ -1,4 +1,4 @@
-import SHA256 from 'crypto-js/sha256';
+const SHA256 = require('crypto-js/sha256');
 
 /* ===== Block Class ===================================
 |  Class with a constructor for block data model       |
@@ -59,3 +59,7 @@ class Blockchain {
         this.chain.push(newBlock);
     }
 }
+
+// Exporting the class BlockChain and Block to be reuse in other files
+module.exports.Blockchain = Blockchain;
+module.exports.Block = Block;
