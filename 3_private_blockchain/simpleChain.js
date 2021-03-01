@@ -29,21 +29,33 @@ class Blockchain {
     constructor() {
         // new chain array
         this.chain = [];
-        this.addBlock(this.genesisBlock())
+        this.addBlock(this.createGenesisBlock())
     }
 
-    genesisBlock() {
+    createGenesisBlock() {
         return new Block("First block in the chain - Genesis block");
+    }
+
+    // getLatest block method
+    getLatestBlock() {
+        return this.chain[this.chain.length - 1];
     }
 
     // addBlock method
     addBlock(newBlock) {
+        // block height
+        newBlock.height = this.chain.length;
+        // UTC timestamp
+        newBlock.timeStamp = new Date().getTime().toString().slice(0, -3);
+
+        // previous block hash
         if (this.chain.length > 0) {
-            // previous block hash
             newBlock.previousHash = this.chain[this.chain.length - 1].hash;
         }
         // SHA256 requires a string of data
         newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
+        console.log(JSON.stringify(newBlock));
+        // add block to chain
         this.chain.push(newBlock);
     }
 }
