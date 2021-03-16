@@ -26,7 +26,7 @@ const txParams = {
     gasPrice: 100,
     gasLimit: 100000,
     value: 1000000000000000,
-  }
+}
 
 // -- Step 5: View the raw transaction
 console.log(txParams);
